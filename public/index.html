@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="socialMediaTracker">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./styles/style.css" media="screen" title="no title" charset="utf-8">
+    <title></title>
+</head>
+
+<body ng-controller="dashCtrl">
+
+
+    <a ui-sref="landingView">Welcome</a>
+    <a ui-sref="dashView">Dashboard</a>
+
+    <ui-view></ui-view>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.10.0/d3-legend.js"></script>
+    <script src="./app.js"></script>
+    <script src="./dash/dashCtrl.js"></script>
+    <script src="./dash/dashSvc.js"></script>
+    <script src="./landing/landingCtrl.js"></script>
+    <script src="./landing/landingSvc.js"></script>
+    <script src="./shared/directives/stackedBarChartDirective.js"></script>
+</body>
+
+</html>

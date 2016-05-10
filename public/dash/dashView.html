@@ -1,0 +1,17 @@
+<br>
+<br>
+
+<stacked-bar-chart-directive></stacked-bar-chart-directive>
+
+<div ng-repeat="tweet in latestTweetsData">
+<br>
+Tweet: {{tweet.text}}
+<br>
+Retweets: {{tweet.retweet_count}}
+<br>
+Favorites: {{tweet.favorite_count}}
+<br>
+Created at: {{tweet.created_at}}
+<br>
+ID: {{tweet.id}}
+</div>
