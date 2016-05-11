@@ -3,6 +3,7 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, das
 $scope.latestTweetsData = null;
 $scope.instaData = null;
 $scope.twitterData = [];
+$scope.testDate = []
 
 $scope.getLatestTweets = function(term){
   dashSvc.latestTweets(term).then(function(response){
@@ -23,11 +24,14 @@ var makeTwitterObj = function(data) {
       tweetID: data[i].id,
       responseType: 'retweet',
       responseSize: data[i].retweet_count
-    })
+    });
+    $scope.testDate.push(Date.parse(data[i].created_at))
   }
   $scope.twitterData.reverse();
-  console.log($scope.twitterData)
+  console.log($scope.twitterData);
+  console.log($scope.testDate);
 }
+
 
 
 
