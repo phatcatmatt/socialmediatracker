@@ -9,7 +9,7 @@ angular.module('socialMediaTracker')
 
       // stacked bar chart
 
-      var outerWidth = 800;
+      var outerWidth = 1000;
       var outerHeight = 500;
       var margin = {left: 50, top: 50, right: 50, bottom: 50};
       var barPadding = 0.2;
@@ -32,7 +32,7 @@ angular.module('socialMediaTracker')
         .attr('class', 'y axis');
       var colorLegendG = g.append('g')
         .attr('class', 'color-legend')
-        .attr('transform', 'translate(300, 0)');
+        .attr('transform', 'translate(800, 0)');
 
       var xScale = d3.scale.ordinal().rangeBands([0, innerWidth], barPadding);
       var yScale = d3.scale.linear().range([innerHeight, 0]);
