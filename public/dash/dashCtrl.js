@@ -1,11 +1,11 @@
 angular.module('socialMediaTracker').controller('dashCtrl', function($scope, dashSvc) {
 
     $scope.latestTweetsData = null;
-    $scope.twitterData = [];
+     $scope.twitterData = [];
 
     $scope.getLatestTweets = function(handle) {
         dashSvc.latestTweets(handle).then(function(response) {
-            $scope.latestTweetsData = response;
+            $scope.latestTweetsData = response.twitterResponse;
             makeTwitterObj($scope.latestTweetsData);
         })
     };
