@@ -1,11 +1,12 @@
-angular.module('socialMediaTracker').controller('dashCtrl', function($scope, dashSvc) {
+angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $state, dashSvc) {
 
     $scope.latestTweetsData = null;
      $scope.twitterData = [];
      $scope.followersData = [];
 
     $scope.getLatestTweets = function(handle) {
-        dashSvc.latestTweets(handle).then(function(response) {
+      if (!handle) {return};
+                dashSvc.latestTweets(handle).then(function(response) {
             $scope.latestTweetsData = response.twitterResponse;
             $scope.followersData = response.trackerResponse;
             for (var i = 0; i < $scope.followersData.followersByDate.length; i++) {
@@ -17,7 +18,9 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, das
             // console.log(y);
             // console.log($scope.followersData);
 
+            $state.go('dashView');
         })
+
     };
 
     var makeTwitterObj = function(data) {
