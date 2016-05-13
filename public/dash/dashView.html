@@ -3,17 +3,20 @@
 
 <stacked-bar-chart-directive></stacked-bar-chart-directive>
 
+<followers-directive></followers-directive>
+
 <div ng-repeat="tweet in latestTweetsData">
 <br>
-Tweet: {{tweet.text}}
+{{barChartXCounter - $index}} Tweet: {{tweet.text}}
 <br>
 Retweets: {{tweet.retweet_count}}
 <br>
 Favorites: {{tweet.favorite_count}}
 <br>
-Created at: {{tweet.created_at}}
+Tweeted at: {{tweet.created_at | date: 'short' }}
 <br>
 ID: {{tweet.id}}
 <br>
 Followers: {{tweet.user.followers_count}}
+<br>
 </div>
