@@ -10,15 +10,19 @@ angular.module('socialMediaTracker')
       // stacked bar chart
 
       var outerWidth = 1000;
-      var outerHeight = 500;
-      var margin = {left: 50, top: 50, right: 50, bottom: 50};
-      var barPadding = 0.2;
+      var outerHeight = 800;
+      var margin = {left: 50, top: 50, right: 50, bottom: 350};
+      var barPadding = 0.3;
       var xColumn = 'tweetID';
       var yColumn = 'responseSize';
       var colorColumn = 'responseType';
       var layerColumn = colorColumn;
       var innerWidth = outerWidth - margin.left - margin.right;
       var innerHeight = outerHeight - margin.top - margin.bottom;
+      var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .html(function(d) { return '<span>' + d.responseSize + '</span>' + ' ' + d.responseType })
+      .offset([-12, 0])
 
       var svg = d3.select('.stackedBarChartDiv').append('svg')
         .attr('width', outerWidth)
@@ -33,6 +37,10 @@ angular.module('socialMediaTracker')
       var colorLegendG = g.append('g')
         .attr('class', 'color-legend')
         .attr('transform', 'translate(800, 0)');
+      var tweetInfo = svg.append('text')
+        .text('this is a test of using text to append a group element to an svg')
+        .attr('transform', 'translate(100, 500)');
+
 
       var xScale = d3.scale.ordinal().rangeBands([0, innerWidth], barPadding);
       var yScale = d3.scale.linear().range([innerHeight, 0]);
@@ -48,7 +56,10 @@ angular.module('socialMediaTracker')
         .shapePadding(2)
         .shapeWidth(15)
         .shapeHeight(15)
-        .labelOffset(4)
+        .labelOffset(4);
+
+        svg.call(tip)
+
 
 
     function render(data) {
@@ -106,6 +117,8 @@ angular.module('socialMediaTracker')
           .attr('height', function(d) {
               return innerHeight - yScale(d.y);
           })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide)
 
         colorLegendG.call(colorLegend);
 

@@ -29,11 +29,11 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
         for (var i = 0; i < data.length; i++) {
             $scope.twitterData.push({
                 tweetID: (data.length) - (i),
-                responseType: 'favorite',
+                responseType: 'favorites',
                 responseSize: data[i].favorite_count
             }, {
                 tweetID: (data.length) - (i),
-                responseType: 'retweet',
+                responseType: 'retweets',
                 responseSize: data[i].retweet_count
             });
         }
