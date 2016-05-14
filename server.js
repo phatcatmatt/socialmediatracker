@@ -1,6 +1,6 @@
 var express = require('express');
 var Twit = require('twit');
-// var keys = require ('./config/keys');
+var keys = require ('./config/keys');
 var mongoose = require('mongoose');
 var controller = require('./controllers/controller')
 var bodyParser = require('body-parser')
@@ -14,14 +14,9 @@ mongoose.connect('mongodb://localhost:27017/trackFollowers', function(err) {
   if (err) { console.log(err) }
 })
 
-var envKeys = {
-  consumer_key: process.env[consumer_key],
-  consumer_secret: process.env[consumer_secret],
-  access_token: process.env[access_token],
-  access_token_secret: process.env[access_token_secret]
-};
 
-var T = new Twit(envKeys);
+
+var T = new Twit(keys.twit);
 
 app.get('/userSearch/:search', function(req, res, next){
   T.get('statuses/user_timeline', {screen_name: req.params.search, count: 100, exclude_replies: true}, function(err, data, response) {
