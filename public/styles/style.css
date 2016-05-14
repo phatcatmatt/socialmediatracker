@@ -2,6 +2,9 @@ body {
   font: 12px sans-serif;
 }
 
+.stackedBarChartDiv {
+  position: relative;
+}
 .axis text {
   font-family: 'Open Sans', sans-serif;
   font-size: 12pt;
@@ -56,4 +59,20 @@ path {
   margin: -1px 0 0 0;
   top: 100%;
   left: 0;
+}
+
+
+.tweettip {
+  background: #fbfbfb;
+  box-shadow: 0 0 1px #999999;
+  color: #333;
+  display: none;
+  font-size: 12px;
+  left: 50px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 500px;
+  width: 200px;
+  z-index: 10;
 }

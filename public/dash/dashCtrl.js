@@ -30,11 +30,13 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
             $scope.twitterData.push({
                 tweetID: (data.length) - (i),
                 responseType: 'favorites',
-                responseSize: data[i].favorite_count
+                responseSize: data[i].favorite_count,
+                tweetText: data[i].text
             }, {
                 tweetID: (data.length) - (i),
                 responseType: 'retweets',
-                responseSize: data[i].retweet_count
+                responseSize: data[i].retweet_count,
+                tweetText: data[i].text
             });
         }
         $scope.twitterData.reverse();

@@ -10,8 +10,8 @@ angular.module('socialMediaTracker')
       // stacked bar chart
 
       var outerWidth = 1000;
-      var outerHeight = 800;
-      var margin = {left: 50, top: 50, right: 50, bottom: 350};
+      var outerHeight = 650;
+      var margin = {left: 50, top: 50, right: 50, bottom: 200};
       var barPadding = 0.3;
       var xColumn = 'tweetID';
       var yColumn = 'responseSize';
@@ -19,7 +19,7 @@ angular.module('socialMediaTracker')
       var layerColumn = colorColumn;
       var innerWidth = outerWidth - margin.left - margin.right;
       var innerHeight = outerHeight - margin.top - margin.bottom;
-      var tip = d3.tip()
+      var tooltip = d3.tip()
       .attr('class', 'd3-tip')
       .html(function(d) { return '<span>' + d.responseSize + '</span>' + ' ' + d.responseType })
       .offset([-12, 0])
@@ -36,10 +36,8 @@ angular.module('socialMediaTracker')
         .attr('class', 'y axis');
       var colorLegendG = g.append('g')
         .attr('class', 'color-legend')
-        .attr('transform', 'translate(800, 0)');
-      var tweetInfo = svg.append('text')
-        .text('this is a test of using text to append a group element to an svg')
-        .attr('transform', 'translate(100, 500)');
+        .attr('transform', 'translate(810, 0)');
+
 
 
       var xScale = d3.scale.ordinal().rangeBands([0, innerWidth], barPadding);
@@ -58,7 +56,25 @@ angular.module('socialMediaTracker')
         .shapeHeight(15)
         .labelOffset(4);
 
-        svg.call(tip)
+        var tweettip = d3.select('.stackedBarChartDiv')
+          .append('div')
+          .attr('class', 'tweettip');
+
+        tweettip.append('div')
+          .attr('class', 'tweetInfo');
+
+        // tweettip.append('div')
+        //   .attr('class', 'count');
+        //
+        // tweettip.append('div')
+        // .attr('class', 'percent');
+
+        svg.call(tooltip)
+
+
+
+
+
 
 
 
@@ -117,8 +133,21 @@ angular.module('socialMediaTracker')
           .attr('height', function(d) {
               return innerHeight - yScale(d.y);
           })
-          .on('mouseover', tip.show)
-          .on('mouseout', tip.hide)
+          .on('click', function(d){
+            tweettip.select('.tweetInfo').html(d.tweetText);
+            tweettip.style('display', 'block');
+          })
+          // .on('click', function (){
+          //   tweettip.style('display', 'none');
+          // })
+          .on('mouseover', tooltip.show)
+          .on('mouseout', tooltip.hide)
+
+          // d3.selectAll('.x .tick')
+          //     .data(data)
+          //     .on('mouseover', tooltip.show)
+          //     .on('mouseout', tooltip.hide);
+
 
         colorLegendG.call(colorLegend);
 
