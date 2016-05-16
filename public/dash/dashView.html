@@ -2,13 +2,13 @@
 <br>
 
 
-<stacked-bar-chart-directive></stacked-bar-chart-directive>
+<stacked-bar-chart-directive new-data="twitterData" ng-if="twitterData.length"></stacked-bar-chart-directive>
 
-<followers-directive></followers-directive>
+<followers-directive new-followers-data="followersData" ng-if="twitterData.length"></followers-directive>
 
 
 
-<div ng-repeat="tweet in latestTweetsData">
+<!-- <div ng-repeat="tweet in latestTweetsData">
 <br>
 {{barChartXCounter - $index}} Tweet: {{tweet.text}}
 <br>
@@ -22,4 +22,4 @@ ID: {{tweet.id}}
 <br>
 Followers: {{tweet.user.followers_count}}
 <br>
-</div>
+</div> -->

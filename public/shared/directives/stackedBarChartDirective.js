@@ -3,6 +3,9 @@ angular.module('socialMediaTracker')
 
   return {
     restrict:'E',
+    scope: {
+      newData: '='
+    },
     template: '<div class="stackedBarChartDiv"></div>',
     controller: function($scope, $state){
 
@@ -127,7 +130,7 @@ angular.module('socialMediaTracker')
               return innerHeight - yScale(d.y);
           })
           .on('click', function(d){
-            tweettip.select('.tweetInfo').html(d.tweetText);
+            tweettip.select('.tweetInfo').html(d.tweetText + '<br>' + 'date: ' + d.tweetID);
             tweettip.style('display', 'block');
           })
           // .on('click', function (){
@@ -155,10 +158,13 @@ function type(d) {
 
 
 var initiate = function() {
-  var newData = type($scope.twitterData);
+  var newData = type($scope.newData);
   render(newData);
 };
 
+$scope.$watch('newData', function(){
+  initiate();
+})
 initiate();
 
     }

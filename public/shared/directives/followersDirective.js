@@ -3,6 +3,9 @@ angular.module('socialMediaTracker')
 
     return {
         restrict: 'E',
+        scope: {
+          newFollowersData: '='
+        },
         template: '<div class="followersDirective"></div>',
         controller: function($scope, $state) {
 
@@ -41,7 +44,6 @@ angular.module('socialMediaTracker')
                 .y(function(d) {
                     return y(d.followers);
                 });
-
             var svg = d3.select('.followersDirective').append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
@@ -50,6 +52,7 @@ angular.module('socialMediaTracker')
 
             var render = function(data) {
 
+              svg.selectAll("*").remove();
                 x.domain(d3.extent(data, function(d) {
                     return d.date;
                 }));
@@ -61,6 +64,8 @@ angular.module('socialMediaTracker')
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + height + ")")
                     .call(xAxis);
+                    svg.select('.y.axis')
+
 
                 svg.append("g")
                     .attr("class", "y axis")
@@ -78,8 +83,10 @@ angular.module('socialMediaTracker')
                     .attr("d", line);
             };
 
-
-          render($scope.followersData.followersByDate)
+            $scope.$watch('newFollowersData', function(){
+              render($scope.newFollowersData.followersByDate);
+            });
+          render($scope.newFollowersData.followersByDate);
         }
 
       }

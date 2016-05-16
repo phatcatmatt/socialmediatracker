@@ -6,18 +6,13 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
 
     $scope.getLatestTweets = function(handle) {
       if (!handle) {return};
-                dashSvc.latestTweets(handle).then(function(response) {
+            dashSvc.latestTweets(handle).then(function(response) {
             $scope.latestTweetsData = response.twitterResponse;
             $scope.followersData = response.trackerResponse;
             for (var i = 0; i < $scope.followersData.followersByDate.length; i++) {
               $scope.followersData.followersByDate[i].date = Date.parse((new Date($scope.followersData.followersByDate[i].date)))
             }
             makeTwitterObj($scope.latestTweetsData);
-            // var x = ($scope.followersData.followersByDate[0].date);
-            // var y = Date.parse((new Date(x)));
-            // console.log(y);
-            // console.log($scope.followersData);
-
             $state.go('dashView');
         })
 
