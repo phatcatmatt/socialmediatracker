@@ -4,6 +4,7 @@ var keys = require ('./config/keys');
 var mongoose = require('mongoose');
 var controller = require('./controllers/controller')
 var bodyParser = require('body-parser');
+var tracker = require('./controllers/tracker')
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
@@ -19,12 +20,16 @@ mongoose.connect('mongodb://localhost:27017/trackFollowers', function(err) {
 var T = new Twit(keys.twit);
 
 app.get('/userSearch/:search', function(req, res, next){
-  T.get('statuses/user_timeline', {screen_name: req.params.search, count: 100, exclude_replies: true}, function(err, data, response) {
-    return err ? res.status(500).send(err) : res.send(data)
-  });
+    T.get('statuses/user_timeline', {screen_name: req.params.search, count: 100, exclude_replies: true}, function(err, data, response) {
+      return err ? res.status(500).send(err) : res.send(data)
+    });
 });
 
 app.put('/api/trackFollowers/:id', controller.updateOrAdd);
+
+
+app.get('/api/all', tracker.findAll, tracker.trackAll)
+// setInterval(tracker.findAll, 1000000)
 
 
 

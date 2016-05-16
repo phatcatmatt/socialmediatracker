@@ -38,4 +38,6 @@ angular.module('socialMediaTracker').service('dashSvc', function($http) {
 
     }
 
+    }
+
 });

@@ -6,8 +6,8 @@ var trackFollowersSchema = new Schema ({
   idStr: {required: true, type: String},
   followersByDate: [
     {
-      followers: {required: true, type: Number},
-      date: {required: true, type: String}
+      followers: {type: Number},
+      date: {type: String}
     }
   ]
 })
