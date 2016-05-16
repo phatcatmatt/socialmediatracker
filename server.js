@@ -3,7 +3,7 @@ var Twit = require('twit');
 var keys = require ('./config/keys');
 var mongoose = require('mongoose');
 var controller = require('./controllers/controller')
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 var app = express();
 app.use(express.static(__dirname + '/public'));

@@ -72,12 +72,6 @@ angular.module('socialMediaTracker')
         svg.call(tooltip)
 
 
-
-
-
-
-
-
     function render(data) {
 
         var nested = d3.nest()
@@ -93,7 +87,6 @@ angular.module('socialMediaTracker')
               return d.values;
             });
         var layers = stack(nested);
-          // console.log(layers);
         xScale.domain(layers[0].values.map(function(d) {
             return d[xColumn];
         }));
