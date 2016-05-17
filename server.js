@@ -27,9 +27,14 @@ app.get('/userSearch/:search', function(req, res, next){
 
 app.put('/api/trackFollowers/:id', controller.updateOrAdd);
 
+setInterval(function(){
+  tracker.findAll()
+    .then(function(results){
+    tracker.trackAll(results);
+    })
 
-app.get('/api/all', tracker.findAll, tracker.trackAll)
-// setInterval(tracker.findAll, 1000000)
+
+}, 900000)
 
 
 
