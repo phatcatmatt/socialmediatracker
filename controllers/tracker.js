@@ -8,7 +8,7 @@ module.exports = {
 
     findAll: function() {
         return trackFollowers.find({})
-        .exec();
+            .exec();
 
     },
 
@@ -18,35 +18,35 @@ module.exports = {
             usersToTrack.push(trackees[i].id)
         }
         T.get('users/lookup', {
-                user_id: usersToTrack
-            }, function(err, data, response) {
-                (function asyncFor(arr, i) {
-                    if (arr.length > i) {
-                        trackFollowers.findOne({
-                            id: arr[i].id
-                        }, function(err, s) {
-                          s.followersByDate.push({
-                          followers: arr[i].followers_count,
-                          date: new Date()
+            user_id: usersToTrack
+        }, function(err, data, response) {
+            (function asyncFor(arr, i) {
+                if (arr.length > i) {
+                    trackFollowers.findOne({
+                        id: arr[i].id
+                    }, function(err, s) {
+                        s.followersByDate.push({
+                            followers: arr[i].followers_count,
+                            date: new Date()
                         });
-                          s.save(function (err, response){
-                            if (err){
-                              console.log(err);
+                        s.save(function(err, response) {
+                            if (err) {
+                                console.log(err);
                             } else {
-                              asyncFor(arr, i+1);
+                                asyncFor(arr, i + 1);
                             }
-                          })
                         })
-                    } else {
-                      console.log('follwers updated ' + new Date());
-                      return
-                    }
+                    })
+                } else {
+                    console.log('follwers updated ' + new Date());
+                    return
+                }
 
 
-                })(data, 0);
+            })(data, 0);
 
 
-            })
+        })
     },
 
 

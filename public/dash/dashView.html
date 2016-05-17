@@ -4,7 +4,16 @@
 
 <stacked-bar-chart-directive new-data="twitterData" ng-if="twitterData.length"></stacked-bar-chart-directive>
 
-<followers-directive new-followers-data="followersData" ng-if="twitterData.length"></followers-directive>
+<div ng-if="followersData.followersByDate.length < 2">
+  <h1>We've recently started tracking this accounts followers. Please check back soon when we've collected more data!</h1>
+</div>
+<followers-directive new-followers-data="followersData" ng-if="followersData.followersByDate.length >= 2"></followers-directive>
+
+
+<div ng-if="!twitterData.length">
+  <h1>please search for a twitter user to see data</h1>
+</div>
+
 
 
 
