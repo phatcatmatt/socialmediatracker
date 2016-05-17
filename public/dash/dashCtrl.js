@@ -9,7 +9,6 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
             dashSvc.latestTweets(handle).then(function(response) {
             $scope.latestTweetsData = response.twitterResponse;
             $scope.followersData = response.trackerResponse;
-            console.log($scope.followersData.followersByDate.length);
             for (var i = 0; i < $scope.followersData.followersByDate.length; i++) {
               $scope.followersData.followersByDate[i].date = Date.parse((new Date($scope.followersData.followersByDate[i].date)))
             }

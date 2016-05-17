@@ -50,7 +50,7 @@ angular.module('socialMediaTracker')
         .outerTickSize(0);
       var yAxis = d3.svg.axis().scale(yScale).orient('left')
         .ticks(6)
-        // .tickFormat(d3.format('s'))
+        .tickFormat(d3.format('s'))
         .outerTickSize(0);
       var colorLegend = d3.legend.color()
         .scale(colorScale)

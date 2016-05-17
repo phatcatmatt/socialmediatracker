@@ -35,7 +35,9 @@ angular.module('socialMediaTracker')
 
             var yAxis = d3.svg.axis()
                 .scale(y)
-                .orient("left");
+                .orient("left")
+                .ticks(5)
+                .tickFormat(d3.format('s'));
 
             var line = d3.svg.line()
                 .x(function(d) {
