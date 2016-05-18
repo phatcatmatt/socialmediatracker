@@ -1,9 +1,104 @@
 body {
-  font: 12px sans-serif;
+  font: 12px 'Lato', sans-serif;
+  width: 100vw;
+  height: 100vw;
+  background-color: white;
 }
 
+.landingdiv {
+  /*border: 2px solid red;*/
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.logobox {
+      width: 35vw;
+      height: 6vh;
+  margin-top: 50px;
+border: 2px solid rgb(111, 191, 221);
+position: relative;
+}
+
+.logotext {
+  font-size: 7vw;
+ position: absolute;
+ top: -40px;
+ left: 60px;
+  text-align: center;
+  color: rgb(111, 191, 221);
+  font-weight: 300;
+}
+
+
+.searchcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.mainsearch {
+  width: 70vw;
+  height: 10vw;
+  font-size: 72px;
+  padding: 10px 0;
+  padding-bottom: 15px;
+  color: white;
+  border-style: solid;
+  border-width: 0px;
+  background-color: rgb(111, 191, 221);
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+.landingbottom {
+  /*border: 2px solid blue;*/
+  height: 210.47px;
+  width: 100vw;
+}
+input {
+    -webkit-border-radius: 0;
+}
+::-webkit-input-placeholder {
+   color: white;
+  opacity: .7;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white;
+   opacity: .7;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;
+   opacity: .7;
+}
+
+:-ms-input-placeholder {
+   color: white;
+   opacity: .7;
+}
+
+
+
+
+
+
+
+
+/* Styles for d3 bar and line chart */
 .stackedBarChartDiv {
   position: relative;
+  background-color: white;
+}
+
+.followersDirective{
+  background-color: white;
+  
 }
 .axis text {
   font-family: 'Open Sans', sans-serif;
@@ -32,6 +127,7 @@ path {
     shape-rendering: crispEdges;
 }
 
+/* Tooltip that displays the number for a given bar */
 .d3-tip {
   line-height: 1;
   font-weight: bold;
@@ -61,7 +157,7 @@ path {
   left: 0;
 }
 
-
+/* Style for the tweet that displays when clicking on barchart*/
 .tweettip {
   background: #fbfbfb;
   box-shadow: 0 0 1px #999999;

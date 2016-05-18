@@ -1,4 +1,15 @@
-@<input ng-model="searchTerm" placeholder="username..." ng-keyup=
-"$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
 
-<button ng-click="getLatestTweets(searchTerm)">search</button>
+<div class="landingdiv">
+  <div class="logobox">
+    <h1 class="logotext">twuft.ly</h1>
+  </div>
+
+
+  <div class="searchcontainer">
+    <input class="mainsearch" placeholder="@handle" autocapitalize="none" autocorrect="off" mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
+    "$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
+  </div>
+  <div class="landingbottom">
+
+  </div>
+</div>
