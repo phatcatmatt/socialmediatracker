@@ -53,5 +53,5 @@ setInterval(function() {
 
 
 app.listen(keys.port, function() {
-    console.log('full steam ahead on port ' + port)
+    console.log('full steam ahead on port ' + keys.port)
 })
