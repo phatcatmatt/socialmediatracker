@@ -43,6 +43,13 @@ setInterval(function() {
 }, 900000)
 
 
+// get a list of users who follow a specified id
+// app.get('/api/followersList/:user', function(req, res, next) {
+//   T.get('/followers/list', {user_id: req.params.user, count: 50, skip_status: true, include_user_entities: true}, function(err, data, response) {
+//     return err ? res.status(500).send(err) : res.send(data)
+//   });
+// });
+
 
 var port = 3000;
 app.listen(port, function() {

@@ -77,6 +77,9 @@ angular.module('socialMediaTracker')
 
     function render(data) {
 
+
+      // margin.right = screen.width <= 750 ? 0 : 50;
+
         var nested = d3.nest()
           .key(function(d) {
             return d[layerColumn]
@@ -158,6 +161,7 @@ function type(d) {
 
 
 var initiate = function() {
+  console.log(screen.width);
   var newData = type($scope.newData);
   render(newData);
 };
@@ -170,6 +174,6 @@ initiate();
     }
   }
 
-
+// window.addEventListener('resize', initate());
 
 })

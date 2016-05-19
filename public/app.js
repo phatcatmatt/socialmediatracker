@@ -5,7 +5,7 @@ $urlRouterProvider.otherwise('/');
 
 $stateProvider
 .state('dashView', {
-  url: '/:id',
+  url: '/dashboard',
   templateUrl: './dash/dashView.html'
 })
 

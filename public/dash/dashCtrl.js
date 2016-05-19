@@ -4,6 +4,7 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
      $scope.twitterData = [];
      $scope.followersData = [];
 
+
     $scope.getLatestTweets = function(handle) {
       if (!handle) {return};
             dashSvc.latestTweets(handle).then(function(response) {

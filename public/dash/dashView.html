@@ -1,6 +1,10 @@
-<br>
-<br>
-
+<h1 ng-show=latestTweetsData[0] class="username">{{latestTweetsData[0].user.name}}</h1>
+<h3 ng-show=latestTweetsData[0]>@{{latestTweetsData[0].user.screen_name}}</h3>
+<h3 ng-show=latestTweetsData[0].user.location>location: {{latestTweetsData[0].user.location}}</h3>
+<h3 ng-show=latestTweetsData[0].user.description>{{latestTweetsData[0].user.description}}</h3>
+<h3 ng-show=latestTweetsData[0]>followers: {{latestTweetsData[0].user.followers_count | number}}</h3>
+<h3 ng-show=latestTweetsData[0]>tweets: {{latestTweetsData[0].user.statuses_count | number}}</h3>
+<img ng-src={{latestTweetsData[0].user.profile_image_url}}/>
 
 <stacked-bar-chart-directive new-data="twitterData" ng-if="twitterData.length"></stacked-bar-chart-directive>
 
@@ -8,25 +12,3 @@
   <h1>We've recently started tracking this accounts followers. Please check back soon when we've collected more data!</h1>
 </div>
 <followers-directive new-followers-data="followersData" ng-if="followersData.followersByDate.length >= 2"></followers-directive>
-
-
-
-
-
-
-
-<!-- <div ng-repeat="tweet in latestTweetsData">
-<br>
-{{barChartXCounter - $index}} Tweet: {{tweet.text}}
-<br>
-Retweets: {{tweet.retweet_count}}
-<br>
-Favorites: {{tweet.favorite_count}}
-<br>
-Tweeted at: {{tweet.created_at | date: 'short' }}
-<br>
-ID: {{tweet.id}}
-<br>
-Followers: {{tweet.user.followers_count}}
-<br>
-</div> -->
