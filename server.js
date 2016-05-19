@@ -51,7 +51,7 @@ setInterval(function() {
 // });
 
 
-var port = 3000;
-app.listen(port, function() {
+
+app.listen(keys.port, function() {
     console.log('full steam ahead on port ' + port)
 })
