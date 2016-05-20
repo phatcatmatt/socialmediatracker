@@ -7,7 +7,7 @@ angular.module('socialMediaTracker')
       newData: '='
     },
     template: '<div class="stackedBarChartDiv"></div>',
-    controller: function($scope, $state){
+    controller: function($scope, $state, $element){
 
 
       // stacked bar chart
@@ -81,7 +81,8 @@ angular.module('socialMediaTracker')
 
 
     function render(data) {
-
+      tooltip.hide();
+      tweettip.style('display', 'none');
 
       // margin.right = screen.width <= 750 ? 0 : 50;
 
@@ -126,7 +127,7 @@ angular.module('socialMediaTracker')
         var barWidth = xScale.rangeBand() / colorScale.domain().length;
         bars.enter().append('rect').attr('height', '0px').attr('y', yScale(0))
         .on('click', function(d){
-          tweettip.select('.tweetInfo').html(d.tweetText + '<br>' + 'date: ' + d.date);
+          tweettip.select('.tweetInfo').html(d.tweetText + '<br>' + d.tweetDate);
           tweettip.style('display', 'block');
         })
         // .on('click', function (){
@@ -171,6 +172,10 @@ var initiate = function() {
   var newData = type($scope.newData);
   render(newData);
 };
+
+$element.on('$destroy', function(){
+  tooltip.hide();
+})
 
 $scope.$watch('newData', function(){
   initiate();

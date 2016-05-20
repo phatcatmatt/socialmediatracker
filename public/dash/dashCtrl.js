@@ -1,4 +1,4 @@
-angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $state, dashSvc) {
+angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $state, $filter, dashSvc) {
 
     $scope.latestTweetsData = null;
      $scope.twitterData = [];
@@ -23,11 +23,13 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
         $scope.twitterData = [];
         for (var i = 0; i < data.length; i++) {
             $scope.twitterData.push({
-                date: parseDate(data[i].created_at),
+                tweetDate: parseDate(data[i].created_at),
+                date: data[i].created_at,
                 responseType: 'favorites',
                 responseSize: data[i].favorite_count,
                 tweetText: data[i].text
             }, {
+                tweetDate: parseDate(data[i].created_at),
                 date: data[i].created_at,
                 responseType: 'retweets',
                 responseSize: data[i].retweet_count,
@@ -37,10 +39,7 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
         $scope.twitterData.reverse();
     }
     function parseDate(date){
-      console.log(date);
-      var myDate = new Date(date);
-      console.log(myDate);
-      return date;
+      return($filter('date')(date, 'M/d/yy h:mm a'));
     }
 
 })
