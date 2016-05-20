@@ -25,7 +25,8 @@ app.get('/userSearch/:search', function(req, res, next) {
     T.get('statuses/user_timeline', {
         screen_name: req.params.search,
         count: 100,
-        exclude_replies: true
+        exclude_replies: true,
+        include_rts: false
     }, function(err, data, response) {
         return err ? res.status(500).send(err) : res.send(data)
     });

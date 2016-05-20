@@ -21,15 +21,14 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
 
     var makeTwitterObj = function(data) {
         $scope.twitterData = [];
-        $scope.barChartXCounter = data.length;
         for (var i = 0; i < data.length; i++) {
             $scope.twitterData.push({
-                tweetID: (data.length) - (i),
+                date: parseDate(data[i].created_at),
                 responseType: 'favorites',
                 responseSize: data[i].favorite_count,
                 tweetText: data[i].text
             }, {
-                tweetID: (data.length) - (i),
+                date: data[i].created_at,
                 responseType: 'retweets',
                 responseSize: data[i].retweet_count,
                 tweetText: data[i].text
@@ -37,6 +36,11 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
         }
         $scope.twitterData.reverse();
     }
-
+    function parseDate(date){
+      console.log(date);
+      var myDate = new Date(date);
+      console.log(myDate);
+      return date;
+    }
 
 })

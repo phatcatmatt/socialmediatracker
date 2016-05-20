@@ -69,15 +69,41 @@ body {
 .username {
   display: inline-block;
   font-size: 2em;
-  margin-bottom: 5px;
+  margin-top: 25px;
+  margin-bottom: 0px;
   padding-left: 15px;
 
 }
 
 .screenname {
   display: inline-block;
-  padding-left: 20px;
-  font-size: 1.25em;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.dashsearchcontainer {
+  display: inline-block;
+  float: right;
+  padding: 20px;
+  margin: 20px;
+}
+
+.dashsearch {
+  width: 35vw;
+  height: 5vw;
+  font-size: 1.5em;
+  padding: 10px 0;
+  padding-bottom: 15px;
+  color: white;
+  border-style: solid;
+  border-width: 0px;
+  background-color: #6ebedd;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.dashsearch:focus{
+  outline: none;
 }
 
 .profiledetails{
@@ -185,16 +211,16 @@ path {
 
 /* Style for the tweet that displays when clicking on barchart*/
 .tweettip {
-  background: #fbfbfb;
+  background: white;
   box-shadow: 0 0 1px #999999;
   color: #333;
   display: none;
-  font-size: 12px;
-  left: 50px;
+  font-size: 18px;
+  left: 75px;
   padding: 10px;
   position: absolute;
   text-align: center;
-  top: 500px;
-  width: 200px;
+  top: 375px;
+  width: 600px;
   z-index: 10;
 }

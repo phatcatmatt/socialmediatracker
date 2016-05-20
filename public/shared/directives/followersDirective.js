@@ -14,9 +14,9 @@ angular.module('socialMediaTracker')
 
             var margin = {
                     top: 20,
-                    right: 20,
-                    bottom: 30,
-                    left: 100
+                    right: 50,
+                    bottom: 50,
+                    left: 80
                 },
                 width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;

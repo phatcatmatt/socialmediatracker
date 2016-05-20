@@ -12,11 +12,11 @@ angular.module('socialMediaTracker')
 
       // stacked bar chart
 
-      var outerWidth = 1000;
-      var outerHeight = 650;
-      var margin = {left: 50, top: 50, right: 50, bottom: 200};
+      var outerWidth = 960;
+      var outerHeight = 550;
+      var margin = {left: 80, top: 50, right: 50, bottom: 200};
       var barPadding = 0.2;
-      var xColumn = 'tweetID';
+      var xColumn = 'date';
       var yColumn = 'responseSize';
       var colorColumn = 'responseType';
       var layerColumn = colorColumn;
@@ -39,7 +39,7 @@ angular.module('socialMediaTracker')
         .attr('class', 'y axis');
       var colorLegendG = g.append('g')
         .attr('class', 'color-legend')
-        .attr('transform', 'translate(810, 0)');
+        .attr('transform', 'translate(750, 0)');
 
 
       var siFormat = d3.format('s');
@@ -51,7 +51,8 @@ angular.module('socialMediaTracker')
       var colorScale = d3.scale.ordinal()
       .range(['#6ebedd','#d3ecf5']);
       var xAxis = d3.svg.axis().scale(xScale).orient('bottom')
-        .outerTickSize(0);
+        .outerTickSize(0)
+        .tickFormat('');
       var yAxis = d3.svg.axis().scale(yScale).orient('left')
         .ticks(6)
         .tickFormat(customTick)
@@ -123,9 +124,19 @@ angular.module('socialMediaTracker')
           return d.values;
         });
         var barWidth = xScale.rangeBand() / colorScale.domain().length;
-        bars.enter().append('rect')
+        bars.enter().append('rect').attr('height', '0px').attr('y', yScale(0))
+        .on('click', function(d){
+          tweettip.select('.tweetInfo').html(d.tweetText + '<br>' + 'date: ' + d.date);
+          tweettip.style('display', 'block');
+        })
+        // .on('click', function (){
+        //   tweettip.style('display', 'none');
+        // })
+        .on('mouseover', tooltip.show)
+        .on('mouseout', tooltip.hide)
         bars.exit().remove();
         bars
+          .transition().duration(1000)
           .attr('x', function(d, i, j) {
               return xScale(d[xColumn]) + barWidth * j;
           })
@@ -136,15 +147,7 @@ angular.module('socialMediaTracker')
           .attr('height', function(d) {
               return innerHeight - yScale(d.y);
           })
-          .on('click', function(d){
-            tweettip.select('.tweetInfo').html(d.tweetText + '<br>' + 'date: ' + d.tweetID);
-            tweettip.style('display', 'block');
-          })
-          // .on('click', function (){
-          //   tweettip.style('display', 'none');
-          // })
-          .on('mouseover', tooltip.show)
-          .on('mouseout', tooltip.hide)
+
 
           // d3.selectAll('.x .tick')
           //     .data(data)
@@ -165,7 +168,6 @@ function type(d) {
 
 
 var initiate = function() {
-  console.log(screen.width);
   var newData = type($scope.newData);
   render(newData);
 };
@@ -173,7 +175,7 @@ var initiate = function() {
 $scope.$watch('newData', function(){
   initiate();
 })
-initiate();
+
 
     }
   }
