@@ -15,7 +15,7 @@ angular.module('socialMediaTracker')
       var outerWidth = 1000;
       var outerHeight = 650;
       var margin = {left: 50, top: 50, right: 50, bottom: 200};
-      var barPadding = 0.3;
+      var barPadding = 0.2;
       var xColumn = 'tweetID';
       var yColumn = 'responseSize';
       var colorColumn = 'responseType';
@@ -42,15 +42,19 @@ angular.module('socialMediaTracker')
         .attr('transform', 'translate(810, 0)');
 
 
-
+      var siFormat = d3.format('s');
+      var customTick = function (d) {
+        return siFormat(d).replace('m','');
+      };
       var xScale = d3.scale.ordinal().rangeBands([0, innerWidth], barPadding);
       var yScale = d3.scale.linear().range([innerHeight, 0]);
-      var colorScale = d3.scale.category20();
+      var colorScale = d3.scale.ordinal()
+      .range(['#6ebedd','#d3ecf5']);
       var xAxis = d3.svg.axis().scale(xScale).orient('bottom')
         .outerTickSize(0);
       var yAxis = d3.svg.axis().scale(yScale).orient('left')
         .ticks(6)
-        .tickFormat(d3.format('s'))
+        .tickFormat(customTick)
         .outerTickSize(0);
       var colorLegend = d3.legend.color()
         .scale(colorScale)

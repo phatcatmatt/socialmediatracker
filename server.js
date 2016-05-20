@@ -4,7 +4,7 @@ var keys = require('./config/keys');
 var mongoose = require('mongoose');
 var controller = require('./controllers/controller')
 var bodyParser = require('body-parser');
-var tracker = require('./controllers/tracker')
+var tracker = require('./controllers/tracker');
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
