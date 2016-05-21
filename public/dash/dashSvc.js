@@ -23,17 +23,10 @@ angular.module('socialMediaTracker').service('dashSvc', function($http) {
 
             .then(function(trackerResponse) {
                 var newTwitterResponse = [];
-                if (screen.width < 750) {
-                  for (var i = 0; i < twitterResponse.data.length && i < 10; i++) {
-                      twitterResponse.data[i].created_at = new Date(twitterResponse.data[i].created_at)
-                      newTwitterResponse.push(twitterResponse.data[i])
-                  }
-                } else {
                 for (var i = 0; i < twitterResponse.data.length && i < 30; i++) {
                     twitterResponse.data[i].created_at = new Date(twitterResponse.data[i].created_at)
                     newTwitterResponse.push(twitterResponse.data[i])
                 }
-              }
                 var combinedResponse = {
                     twitterResponse: newTwitterResponse,
                     trackerResponse: trackerResponse.data

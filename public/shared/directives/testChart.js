@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
-
 app.controller('MainCtrl', function($scope, $window){
+
   angular.element($window).on('resize', function(){ $scope.$apply() })
   // world's largest employers
   // source: https://en.wikipedia.org/wiki/List_of_largest_employers
@@ -80,3 +80,19 @@ app.directive('scatter', function(){
     scope: { data: '=' }
   };
 });
+
+
+
+
+
+// if (window.innerWidth < 450){
+//   barPadding = .1;
+//   $scope.shortData = $filter('limitTo')($scope.newData, 10);
+//   resize($scope.shortData)
+// } else  if (window.innerWidth < 700){
+//   barPadding = .2;
+//   $scope.medData = $filter('limitTo')($scope.newData, 20);
+//   resize($scope.medData)
+// } else {
+//   resize($scope.newData)
+// }

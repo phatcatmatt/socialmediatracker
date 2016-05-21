@@ -2,7 +2,7 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: rgb(240, 240, 240);
-  font: 2em 'Lato', sans-serif;
+  font: 12px 'Lato', sans-serif;
 }
 
 .landingdiv {
@@ -130,7 +130,6 @@ input {
 
 /* Styles for d3 bar and line chart */
 .stackedBarChartDiv {
-  width: 100vw;
   position: relative;
   background-color: rgb(240, 240, 240);
 }
@@ -140,15 +139,15 @@ input {
 
 }
 .axis text {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Lato', 'Open Sans', sans-serif;
   font-size: 12pt;
 }
 .axis .label {
-  font-size: 20pt;
+  font-size: 12px;
 }
 
 .color-legend text {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Lato', 'Open Sans', sans-serif;
   font-size: 12pt;
 }
 

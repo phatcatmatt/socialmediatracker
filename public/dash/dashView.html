@@ -16,10 +16,10 @@
 <h3 ng-show=latestTweetsData[0]>followers: {{latestTweetsData[0].user.followers_count | number}}</h3>
 <h3 ng-show=latestTweetsData[0]>tweets: {{latestTweetsData[0].user.statuses_count | number}}</h3>
 </div>
-<!--
+
 <stacked-bar-chart-directive new-data="twitterData" ng-if="twitterData.length"></stacked-bar-chart-directive>
 
-<div ng-if="followersData.followersByDate.length < 2">
+<!-- <div ng-if="followersData.followersByDate.length < 2">
   <h1>We've recently started tracking this accounts followers. Please check back soon when we've collected more data!</h1>
 </div>
 <followers-directive new-followers-data="followersData" ng-if="followersData.followersByDate.length >= 2"></followers-directive> -->

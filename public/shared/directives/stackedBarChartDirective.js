@@ -7,69 +7,111 @@ angular.module('socialMediaTracker')
       newData: '='
     },
     template: '<div class="stackedBarChartDiv"></div>',
-    controller: function($scope, $state, $element){
+    controller: function($scope, $state, $element, $window, $filter){
 
-
+  angular.element($window).on('resize', function(){
+    setsize();
+  });
       // stacked bar chart
 
-      var outerWidth = 960;
-      var outerHeight = 550;
-      var margin = {left: 80, top: 50, right: 50, bottom: 200};
-      var barPadding = 0.2;
+      var el = $element[0]
+      var outerWidth;
+      var outerHeight;
+      var margin = {left: 45, top: 10, right: 50, bottom: 10};
+      var barPadding;
+      // var outerWidth = 960;
+      // var outerHeight = 550;
+      // var margin = {left: 80, top: 50, right: 50, bottom: 200};
+      // var barPadding = 0.2;
       var xColumn = 'date';
       var yColumn = 'responseSize';
       var colorColumn = 'responseType';
       var layerColumn = colorColumn;
-      var innerWidth = outerWidth - margin.left - margin.right;
-      var innerHeight = outerHeight - margin.top - margin.bottom;
-      var tooltip = d3.tip()
-      .attr('class', 'd3-tip')
-      .html(function(d) { return '<span>' + d.responseSize + '</span>' + ' ' + d.responseType })
-      .offset([-12, 0])
-
-      var svg = d3.select('.stackedBarChartDiv').append('svg')
-        .attr('width', outerWidth)
-        .attr('height', outerHeight);
-      var g = svg.append('g')
-        .attr('transform', 'translate('+ margin.left + ',' + margin.top + ')');
-      var xAxisG = g.append('g')
-        .attr('class', 'x axis')
-        .attr('transform', 'translate(0,' + innerHeight + ')');
-      var yAxisG = g.append('g')
-        .attr('class', 'y axis');
-      var colorLegendG = g.append('g')
-        .attr('class', 'color-legend')
-        .attr('transform', 'translate(750, 0)');
-
-
       var siFormat = d3.format('s');
       var customTick = function (d) {
         return siFormat(d).replace('m','');
       };
-      var xScale = d3.scale.ordinal().rangeBands([0, innerWidth], barPadding);
-      var yScale = d3.scale.linear().range([innerHeight, 0]);
+
+      var tooltip = d3.tip()
+      .attr('class', 'd3-tip')
+      .html(function(d) { return '<span>' + d.responseSize + '</span>' + ' ' + d.responseType })
+      .offset([-12, 0])
+      var svg = d3.select('.stackedBarChartDiv').append('svg')
+
+      var g = svg.append('g')
+        .attr('transform', 'translate('+ margin.left + ',' + margin.top + ')');
+      var xAxisG = g.append('g')
+        .attr('class', 'x axis')
+      var yAxisG = g.append('g')
+        .attr('class', 'y axis');
+      var colorLegendG = g.append('g')
+        .attr('class', 'color-legend');
       var colorScale = d3.scale.ordinal()
       .range(['#6ebedd','#d3ecf5']);
-      var xAxis = d3.svg.axis().scale(xScale).orient('bottom')
-        .outerTickSize(0)
-        .tickFormat('');
-      var yAxis = d3.svg.axis().scale(yScale).orient('left')
-        .ticks(6)
-        .tickFormat(customTick)
-        .outerTickSize(0);
+      var xAxis;
+      var yAxis;
       var colorLegend = d3.legend.color()
         .scale(colorScale)
         .shapePadding(2)
         .shapeWidth(15)
         .shapeHeight(15)
         .labelOffset(4);
+      var tweettip = d3.select('.stackedBarChartDiv')
+        .append('div')
+        .attr('class', 'tweettip');
+      var innerWidth;
+      var innerHeight;
+      var xScale;
+      var yScale;
 
-        var tweettip = d3.select('.stackedBarChartDiv')
-          .append('div')
-          .attr('class', 'tweettip');
 
         tweettip.append('div')
           .attr('class', 'tweetInfo');
+
+        function setsize(){
+          outerWidth = window.innerWidth;
+          outerHeight = window.innerHeight/1.7;
+          if (window.innerWidth < 425){
+            barPadding = .1;
+            $scope.shortData = $filter('limitTo')($scope.newData, -12);
+            resize($scope.shortData)
+          } else if (window.innerWidth < 600){
+            barPadding = .2;
+            $scope.medSmallData = $filter('limitTo')($scope.newData, -20)
+            resize($scope.medSmallData)
+          } else if (window.innerWidth < 700){
+            barPadding = .2;
+            $scope.medData = $filter('limitTo')($scope.newData, -26)
+            resize($scope.medData)
+          } else if (window.innerWidth < 900){
+            barPadding = .2;
+            $scope.medLargeData = $filter('limitTo')($scope.newData, -32)
+            resize($scope.medLargeData)
+          } else {
+            barPadding = .2;
+            resize($scope.newData)
+          }
+
+        }
+
+        function resize(newData){
+          innerWidth = outerWidth - margin.left - margin.right;
+          innerHeight = outerHeight - margin.top - margin.bottom;
+          svg.attr('width', outerWidth).attr('height', outerHeight);
+          xScale = d3.scale.ordinal().rangeBands([0, innerWidth], barPadding);
+          yScale = d3.scale.linear().range([innerHeight, 0]);
+          colorLegendG.attr('transform', 'translate(200, 0)');  //fix 200 later
+          xAxisG.attr('transform', 'translate(0,' + innerHeight + ')');
+          xAxis = d3.svg.axis().scale(xScale).orient('bottom')
+            .outerTickSize(0)
+            .tickFormat('');
+          yAxis = d3.svg.axis().scale(yScale).orient('left')
+            .ticks(6)
+            .tickFormat(customTick)
+            .outerTickSize(0);
+          render(newData);
+        }
+
 
         // tweettip.append('div')
         //   .attr('class', 'count');
@@ -148,43 +190,29 @@ angular.module('socialMediaTracker')
           .attr('height', function(d) {
               return innerHeight - yScale(d.y);
           })
-
-
           // d3.selectAll('.x .tick')
           //     .data(data)
           //     .on('mouseover', tooltip.show)
           //     .on('mouseout', tooltip.hide);
-
 
         colorLegendG.call(colorLegend);
 
       }
 
 
-
-function type(d) {
-  d.responseSize = +d.responseSize;
-  return d;
-}
+      $scope.$watch('newData', function(){
+        setsize();
+      })
 
 
-var initiate = function() {
-  var newData = type($scope.newData);
-  render(newData);
-};
+      $element.on('$destroy', function(){
+        tooltip.hide();
+      })
 
-$element.on('$destroy', function(){
-  tooltip.hide();
-})
-
-$scope.$watch('newData', function(){
-  initiate();
-})
 
 
     }
   }
 
-// window.addEventListener('resize', initate());
 
 })
