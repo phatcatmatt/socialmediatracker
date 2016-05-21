@@ -1,12 +1,12 @@
 body {
-  font: 2em 'Lato', sans-serif;
+  height: 100vh;
   width: 100vw;
-  height: 100vw;
   background-color: rgb(240, 240, 240);
+  font: 2em 'Lato', sans-serif;
 }
 
 .landingdiv {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,18 +15,18 @@ body {
 
 
 .logobox {
-  width: 35vw;
-  height: 6vh;
+  width: 100px;
+  height: 35px;
   margin-top: 50px;
   border: 2px solid #6ebedd;
   position: relative;
 }
 
 .logotext {
-  font-size: 7vw;
+  font-size: 24px;
   position: absolute;
-  top: -40px;
-  left: 60px;
+  top: -17px;
+  left: 11px;
   text-align: center;
   color: #6ebedd;
   font-weight: 300;
@@ -34,22 +34,19 @@ body {
 
 
 .searchcontainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .mainsearch {
-  width: 70vw;
-  height: 10vw;
-  font-size: 72px;
+  width: 250px;
+  height: 17px;
+  font-size: 24px;
   padding: 10px 0;
-  padding-bottom: 15px;
+  padding-bottom: 13px;
   color: white;
   border-style: solid;
   border-width: 0px;
   background-color: #6ebedd;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
 }
 
@@ -57,48 +54,36 @@ body {
   outline: none;
 }
 
-.landingbottom {
-  height: 210.47px;
-  width: 100vw;
-}
+
 
 .profileheader {
-  display: inline;
+padding-left: 10px;
+padding-top: 5px;
 }
 
 .username {
-  display: inline-block;
-  font-size: 2em;
-  margin-top: 25px;
-  margin-bottom: 0px;
-  padding-left: 15px;
-
+  font-size: 28px;
 }
 
 .screenname {
-  display: inline-block;
-  font-size: 1.5em;
-  margin-bottom: 10px;
+padding-bottom: 5px;
+font-size: 16px;
 }
 
-.dashsearchcontainer {
-  display: inline-block;
-  float: right;
-  padding: 20px;
-  margin: 20px;
-}
 
 .dashsearch {
-  width: 35vw;
-  height: 5vw;
-  font-size: 1.5em;
+float: right;
+  width: 120px;
+  height: 10px;
+  font-size: 18px;
   padding: 10px 0;
-  padding-bottom: 15px;
+  margin: 10px;
+  padding-bottom: 13px;
   color: white;
   border-style: solid;
   border-width: 0px;
   background-color: #6ebedd;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
 }
 
@@ -107,7 +92,8 @@ body {
 }
 
 .profiledetails{
-  padding-left: 20px;
+  padding-left: 10px;
+  font-size: 13px;
 }
 
 
@@ -144,6 +130,7 @@ input {
 
 /* Styles for d3 bar and line chart */
 .stackedBarChartDiv {
+  width: 100vw;
   position: relative;
   background-color: rgb(240, 240, 240);
 }

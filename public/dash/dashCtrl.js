@@ -6,7 +6,11 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
 
 
     $scope.getLatestTweets = function(handle) {
-      if (!handle) {return};
+      if (!handle) {return}
+      else if (handle.indexOf(' ') !== -1){
+        console.log('no spaces allowed');
+        return;
+      }
             dashSvc.latestTweets(handle).then(function(response) {
             $scope.latestTweetsData = response.twitterResponse;
             $scope.followersData = response.trackerResponse;
