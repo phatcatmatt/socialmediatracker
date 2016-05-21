@@ -6,9 +6,11 @@ var controller = require('./controllers/controller')
 var bodyParser = require('body-parser');
 var tracker = require('./controllers/tracker');
 
+
 var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
+
 
 mongoose.set('debug', true)
 mongoose.connect('mongodb://localhost:27017/trackFollowers', function(err) {
