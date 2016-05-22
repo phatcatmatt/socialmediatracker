@@ -18,7 +18,7 @@ angular.module('socialMediaTracker')
             var outerHeight;
             var innerWidth;
             var innerHeight;
-            var margin = {top: 20, right: 50, bottom: 20, left: 70};
+            var margin = {top: 20, right: 30, bottom: 20, left: 70};
             var x;
             var y;
             var xAxis = d3.svg.axis();
@@ -31,7 +31,7 @@ angular.module('socialMediaTracker')
                   outerHeight = window.innerHeight/2;
                   innerWidth = outerWidth - margin.left - margin.right;
                   innerHeight = outerHeight - margin.top - margin.bottom;
-
+                  //add device data filter
                   resize(data)
                 }
 
@@ -43,6 +43,8 @@ angular.module('socialMediaTracker')
                       .range([innerHeight, 0]);
                   xAxis
                       .scale(x)
+                      .ticks(d3.time.days, 1)
+                      .tickFormat(d3.time.format('%_m/%e')) //adjust for different devices
                       .orient("bottom");
                   yAxis
                       .scale(y)

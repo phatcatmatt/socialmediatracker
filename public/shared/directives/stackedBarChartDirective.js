@@ -17,7 +17,7 @@ angular.module('socialMediaTracker')
 
       var outerWidth;
       var outerHeight;
-      var margin = {top: 10, right: 50, bottom: 10, left: 45};
+      var margin = {top: 10, right: 30, bottom: 10, left: 45};
       var barPadding;
       // var outerWidth = 960;
       // var outerHeight = 550;
