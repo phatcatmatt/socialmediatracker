@@ -24,11 +24,10 @@ angular.module('socialMediaTracker').service('dashSvc', function($http) {
             })
 
             .then(function(trackerResponse) {
-
                 return $http({
                     method: 'PUT',
                     url: '/api/session/',
-                    data: trackInfo
+                    data: trackerResponse.data
                 })
 
                 .then(function(sessionResponse) {
