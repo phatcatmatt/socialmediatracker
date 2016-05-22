@@ -5,7 +5,9 @@ var mongoose = require('mongoose');
 var controller = require('./controllers/controller')
 var bodyParser = require('body-parser');
 var tracker = require('./controllers/tracker');
-
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var sessionHistory = require('./controllers/sessionHistory')
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
@@ -18,6 +20,16 @@ mongoose.connect('mongodb://localhost:27017/trackFollowers', function(err) {
         console.log(err)
     }
 })
+
+var sessionOptions = {
+  mongooseConnection: mongoose.connection
+};
+
+app.use(session({
+  secret: keys.sessionSecret,
+  store: new MongoStore(sessionOptions)
+}));
+
 
 
 
@@ -35,6 +47,8 @@ app.get('/userSearch/:search', function(req, res, next) {
 });
 
 app.put('/api/trackFollowers/:id', controller.updateOrAdd);
+
+app.put('/api/session/', sessionHistory.updateOrAddHistory);
 
 setInterval(function() {
     tracker.findAll()

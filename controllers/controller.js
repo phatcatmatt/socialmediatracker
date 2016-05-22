@@ -14,6 +14,8 @@ module.exports = {
                 var newInfo = {
                     id: req.body.id,
                     idStr: req.body.idStr,
+                    name: req.body.name,
+                    screenName: req.body.screenName,
                     followersByDate: []
                 };
                 trackFollowers.create(newInfo, function(err, response) {
@@ -25,6 +27,6 @@ module.exports = {
         })
     },
 
-    
+
 
 }
