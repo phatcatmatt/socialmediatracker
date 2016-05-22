@@ -1,98 +1,118 @@
-var app = angular.module('myApp', []);
-app.controller('MainCtrl', function($scope, $window){
+angular.module('socialMediaTracker')
+  .directive('followersDirective', function() {
 
-  angular.element($window).on('resize', function(){ $scope.$apply() })
-  // world's largest employers
-  // source: https://en.wikipedia.org/wiki/List_of_largest_employers
-  $scope.employers = [
-      { value: 3.2, name: 'United States Department of Defense' }
-    , { value: 2.3, name: 'People\'s Liberation Army' }
-    , { value: 2.1, name: 'Walmart' }
-    , { value: 1.9, name: 'McDonald\'s' }
-    , { value: 1.7, name: 'National Health Service' }
-    , { value: 1.6, name: 'China National Petroleum Corporation' }
-    , { value: 1.5, name: 'State Grid Corporation of China' }
-    , { value: 1.4, name: 'Indian Railways' }
-    , { value: 1.3, name: 'Indian Armed Forces' }
-    , { value: 1.2, name: 'Hon Hai Precision Industry (Foxconn)' }
-  ]
-});
+    return {
+        restrict: 'E',
+        scope: {
+          newFollowersData: '='
+        },
+        template: '<div class="followersDirective"></div>',
+        controller: function($scope, $state, $element, $window, $filter) {
 
-app.directive('scatter', function(){
-  function link(scope, el, attr){
-    el = el[0];
-    var w, h;
-    var svg = d3.select(el).append('svg');
-    var xAxisG = svg.append('g').attr('class', 'x-axis');
-    var yAxisG = svg.append('g').attr('class', 'y-axis');
-    var points = svg.append('g').attr('class', 'points').selectAll('g.point');
-    var x = d3.scale.linear();
-    var y = d3.scale.linear();
-    var xAxis = d3.svg.axis().scale(x).orient('bottom')
-      .tickFormat(function(d, i){ return i + 1; }); // 1 index the company ranks
-    var yAxis = d3.svg.axis().scale(y).orient('left');
-    var m = 50;
+        angular.element($window).on('resize', function() {
+          setsize($scope.newFollowersData.followersByDate);
+        })
 
-    scope.$watch(function(){
-      w = el.clientWidth;
-      h = el.clientHeight;
-      return w + h;
-    }, resize);
-
-    function resize(){
-      svg.attr({width: w, height: h});
-      x.range([m, w - m]);
-      y.range([h - m, m]);
-      xAxis.tickSize(-h + 2 * m);
-      yAxis.tickSize(-w + 2 * m);
-      xAxisG.attr('transform', 'translate(' + [0, y.range()[0] + 0.5] + ')');
-      yAxisG.attr('transform', 'translate(' + [x.range()[0], 0] + ')');
-      update();
-    }
-
-    scope.$watch('data', update);
-
-    function update(){
-      if(!scope.data){ return };
-      var data = scope.data;
-      var x_extent = d3.extent(data, function(d, i){ return i });
-      x.domain(x_extent);
-      var y_max = d3.max(data, function(d){ return d.value });
-      y.domain([0, y_max]);
-      points = points.data(data);
-      points.exit().remove();
-      var point = points.enter().append('g').attr('class', 'point');
-      point.append('circle').attr('r', 5)
-
-      // update the position of all the points
-      points.attr('transform', function(d, i){
-        return 'translate(' + [x(i), y(d.value)] + ')';
-      });
-
-      xAxisG.call(xAxis);
-      yAxisG.call(yAxis);
-
-    };
-  }
-  return {
-    link: link,
-    restrict: 'E',
-    scope: { data: '=' }
-  };
-});
+            // followers line chart
+            var outerWidth;
+            var outerHeight;
+            var innerWidth;
+            var innerHeight;
+            var margin = {top: 20, right: 50, bottom: 50, left: 50};
+            var x;
+            var y;
+            var xAxis = d3.svg.axis()
+            var yAxis = d3.svg.axis()
+            var line;
+            var svg = d3.select('.followersDirective').append("svg");
 
 
 
 
+                function setsize(data){
+                  outerWidth = window.innerWidth;
+                  outerHeight = window.innerHeight/2;
+                  innerWidth = outerWidth - margin.left - margin.right;
+                  innerHeight = outerHeight - margin.top - margin.bottom;
 
-// if (window.innerWidth < 450){
-//   barPadding = .1;
-//   $scope.shortData = $filter('limitTo')($scope.newData, 10);
-//   resize($scope.shortData)
-// } else  if (window.innerWidth < 700){
-//   barPadding = .2;
-//   $scope.medData = $filter('limitTo')($scope.newData, 20);
-//   resize($scope.medData)
-// } else {
-//   resize($scope.newData)
-// }
+
+
+                  resize(data)
+                }
+
+
+
+                function resize(data){
+                  x = d3.time.scale().range([0, innerWidth]);
+                  // var x = d3.scale.linear()
+                  //     .range([0, width]);
+                  y = d3.scale.linear()
+                      .range([innerHeight, 0]);
+                  xAxis
+                      .scale(x)
+                      .orient("bottom");
+                  yAxis
+                      .scale(y)
+                      .orient("left")
+                      .ticks(5)
+                      .tickFormat(d3.format('s'));
+                  line = d3.svg.line()
+                      .x(function(d) {
+                          return x(d.date);
+                      })
+                      .y(function(d) {
+                          return y(d.followers);
+                      });
+                  svg.attr("width", outerWidth)
+                  .attr("height", outerHeight)
+                  .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+                  render(data)
+                }
+
+
+            var render = function(data) {
+
+              svg.selectAll("*").remove();
+                x.domain(d3.extent(data, function(d) {
+                    return d.date;
+                }));
+              y.domain(d3.extent(data, function(d) {
+                  return d.followers;
+              }));
+
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(" + margin.left + "," + innerHeight + ")")
+                    .call(xAxis)
+                    svg.select('.y.axis')
+
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis)
+                    .attr("transform", "translate(50, 0)")
+                    .append("text")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", 6)
+                    .attr("dy", ".71em")
+                    .style("text-anchor", "end")
+                    .text("Followers");
+
+                svg.append("path")
+                    .datum(data)
+                    .attr("class", "line")
+                    .attr("d", line);
+            };
+
+
+
+            $scope.$watch('newFollowersData', function(){
+              setsize($scope.newFollowersData.followersByDate);
+            });
+
+        }
+
+      }
+  })

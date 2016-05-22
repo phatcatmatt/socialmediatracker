@@ -10,14 +10,14 @@ angular.module('socialMediaTracker')
     controller: function($scope, $state, $element, $window, $filter){
 
   angular.element($window).on('resize', function(){
-    setsize();
+    setsize($scope.newData);
   });
       // stacked bar chart
 
-      var el = $element[0]
+
       var outerWidth;
       var outerHeight;
-      var margin = {left: 45, top: 10, right: 50, bottom: 10};
+      var margin = {top: 10, right: 50, bottom: 10, left: 45};
       var barPadding;
       // var outerWidth = 960;
       // var outerHeight = 550;
@@ -68,28 +68,28 @@ angular.module('socialMediaTracker')
         tweettip.append('div')
           .attr('class', 'tweetInfo');
 
-        function setsize(){
+        function setsize(data){
           outerWidth = window.innerWidth;
           outerHeight = window.innerHeight/1.7;
-          if (window.innerWidth < 425){
+          if (outerWidth < 425){
             barPadding = .1;
-            $scope.shortData = $filter('limitTo')($scope.newData, -12);
-            resize($scope.shortData)
-          } else if (window.innerWidth < 600){
+            smallData = $filter('limitTo')(data, -12);
+            resize(smallData)
+          } else if (outerWidth < 600){
             barPadding = .2;
-            $scope.medSmallData = $filter('limitTo')($scope.newData, -20)
-            resize($scope.medSmallData)
-          } else if (window.innerWidth < 700){
+            medSmallData = $filter('limitTo')(data, -20)
+            resize(medSmallData)
+          } else if (outerWidth < 700){
             barPadding = .2;
-            $scope.medData = $filter('limitTo')($scope.newData, -26)
-            resize($scope.medData)
-          } else if (window.innerWidth < 900){
+            medData = $filter('limitTo')(data, -26)
+            resize(medData)
+          } else if (outerWidth < 900){
             barPadding = .2;
-            $scope.medLargeData = $filter('limitTo')($scope.newData, -32)
-            resize($scope.medLargeData)
+            medLargeData = $filter('limitTo')(data, -32)
+            resize(medLargeData)
           } else {
             barPadding = .2;
-            resize($scope.newData)
+            resize(data)
           }
 
         }
@@ -201,7 +201,7 @@ angular.module('socialMediaTracker')
 
 
       $scope.$watch('newData', function(){
-        setsize();
+        setsize($scope.newData);
       })
 
 
