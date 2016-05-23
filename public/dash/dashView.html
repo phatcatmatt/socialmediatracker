@@ -1,3 +1,6 @@
+<div class="dashimg">
+
+
 <input class="dashsearch" placeholder="@handle" autocapitalize="none" autocorrect="off" mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
 "$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
 
@@ -15,7 +18,7 @@
 <h3 ng-show=latestTweetsData[0]>tweets: {{latestTweetsData[0].user.statuses_count | number}}</h3>
 </div>
 
-<button type="button" name="button" ng-click="barChartShow()">Show stuff</button>
+<button class="showFollowersButton" ng-click="barChartShow()">Show Followers</button>
 
 
 <div ng-show="chartTab">
@@ -33,4 +36,5 @@
   <h1>We've recently started tracking this accounts followers. Please check back soon when we've collected more data!</h1>
 </div>
 <followers-directive new-followers-data="followersData" ng-if="followersData.followersByDate.length >= 2"></followers-directive>
+</div>
 </div>

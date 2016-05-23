@@ -1,10 +1,17 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-color: rgb(240, 240, 240);
   font: 12px 'Lato', sans-serif;
 }
-
+.landingimage{
+  background: url('../landingimg.jpg')no-repeat left top fixed;
+  background-size: cover;
+  background-color: rgb(240, 240, 240);
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: -1pt;
+}
 .landingdiv {
   height: 90vh;
   display: flex;
@@ -54,7 +61,13 @@ body {
   outline: none;
 }
 
-
+.dashimg{
+  background-color: rgb(240, 240, 240);
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: -1pt;
+}
 
 .profileheader {
 padding-left: 10px;
@@ -97,6 +110,9 @@ float: right;
   font-size: 13px;
 }
 
+.showFollowersButton {
+  
+}
 
 
 input {
@@ -132,13 +148,8 @@ input {
 /* Styles for d3 bar and line chart */
 .stackedBarChartDiv {
   position: relative;
-  background-color: rgb(240, 240, 240);
 }
 
-.followersDirective{
-  background-color: rgb(240, 240, 240);
-
-}
 .axis text {
   font-family: 'Lato', 'Open Sans', sans-serif;
   font-size: 12pt;
