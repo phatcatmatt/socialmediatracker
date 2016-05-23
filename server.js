@@ -27,7 +27,7 @@ var sessionOptions = {
 
 app.use(session({
   secret: keys.sessionSecret,
-  saveUninitalized: false,
+  saveUninitialized: false,
   resave: false,
   store: new MongoStore(sessionOptions),
 }));
