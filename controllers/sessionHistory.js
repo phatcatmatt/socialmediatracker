@@ -1,4 +1,4 @@
-var sessions = require('../models/sessions')
+var sessions = require('../models/sessions');
 
 module.exports = {
 
@@ -11,16 +11,14 @@ module.exports = {
             }, {
                 'new': true,
                 upsert: true
-            },
-            function(err, s) {
-                if (err) {
-                    console.log(err);
-                    res.status(500).send(err)
-                } else {
-                    res.send(s);
-                }
             }
-        )
+        ).populate('history').exec(function(err, s){
+          if (err){
+            res.status(500).send(err);
+          } else {
+            res.send(s);
+          }
+        })
     }
 
 
