@@ -3,7 +3,7 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
     $scope.latestTweetsData = null;
      $scope.twitterData = [];
      $scope.followersData = [];
-
+     $scope.chartTab = true;
 
     $scope.getLatestTweets = function(handle) {
       if (!handle) {return}
@@ -44,6 +44,10 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
     }
     function parseDate(date){
       return($filter('date')(date, 'M/d/yy h:mm a'));
+    }
+
+    $scope.barChartShow = function(){
+      $scope.chartTab = !$scope.chartTab;
     }
 
 })

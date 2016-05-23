@@ -78,6 +78,7 @@ float: right;
   font-size: 18px;
   padding: 10px 0;
   margin: 10px;
+  margin-right: 20px;
   padding-bottom: 13px;
   color: white;
   border-style: solid;
@@ -201,12 +202,11 @@ path {
   box-shadow: 0 0 1px #999999;
   color: #333;
   display: none;
-  font-size: 18px;
-  left: 75px;
+  font-size: 14px;
   padding: 10px;
-  position: absolute;
+  /*position: absolute;*/
   text-align: center;
-  top: 375px;
-  width: 600px;
+  /*top: 400px;*/
+  /*width: 100vw;*/
   z-index: 10;
 }

@@ -100,7 +100,7 @@ angular.module('socialMediaTracker')
           svg.attr('width', outerWidth).attr('height', outerHeight);
           xScale = d3.scale.ordinal().rangeBands([0, innerWidth], barPadding);
           yScale = d3.scale.linear().range([innerHeight, 0]);
-          colorLegendG.attr('transform', 'translate(200, 0)');  //fix 200 later
+          colorLegendG.attr('transform', 'translate(15, 0)');  //fix 200 later
           xAxisG.attr('transform', 'translate(0,' + innerHeight + ')');
           xAxis = d3.svg.axis().scale(xScale).orient('bottom')
             .outerTickSize(0)
