@@ -28,7 +28,7 @@ angular.module('socialMediaTracker')
 
                 function setsize(data){
                   outerWidth = window.innerWidth;
-                  outerHeight = window.innerHeight/2;
+                  outerHeight = window.innerHeight/1.7;
                   innerWidth = outerWidth - margin.left - margin.right;
                   innerHeight = outerHeight - margin.top - margin.bottom;
                   //add device data filter

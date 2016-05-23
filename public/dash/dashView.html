@@ -18,7 +18,7 @@
 <h3 ng-show=latestTweetsData[0]>tweets: {{latestTweetsData[0].user.statuses_count | number}}</h3>
 </div>
 
-<button class="showFollowersButton" ng-click="barChartShow()">Show Followers</button>
+<button ng-show=latestTweetsData[0] class="showFollowersButton" ng-click="barChartShow()">show more</button>
 
 
 <div ng-show="chartTab">

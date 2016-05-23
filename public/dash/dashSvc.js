@@ -31,7 +31,7 @@ angular.module('socialMediaTracker').service('dashSvc', function($http) {
                 })
 
                 .then(function(sessionResponse) {
-                  console.log('session response ', sessionResponse.data);
+                  // console.log('session response ', sessionResponse.data);
                     var newTwitterResponse = [];
                     for (var i = 0; i < twitterResponse.data.length && i < 30; i++) {
                         twitterResponse.data[i].created_at = new Date(twitterResponse.data[i].created_at)
