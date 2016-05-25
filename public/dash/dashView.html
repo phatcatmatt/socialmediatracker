@@ -1,7 +1,7 @@
 <div class="dashimg">
 
-<input class="dashsearch" placeholder="username" autocapitalize="none" autocorrect="off" mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
-"$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
+<input class="dashsearch" placeholder="search..." autocapitalize="none" autocorrect="off" mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
+"$event.keyCode == 13 && getLatestTweets(searchTerm); resetSearch()"></input>
 
 
 <div class="profile">
@@ -42,7 +42,7 @@
 <div ng-show="!chartTab">
 
 <div ng-if="followersData.followersByDate.length < 2">
-  <h1>We've recently started tracking this accounts followers. Please check back soon when we've collected more data!</h1>
+  <h1 class="no-tracking-data-message">We've recently started tracking @{{latestTweetsData[0].user.screen_name}}'s followers. Please check back in about 45 minutes, when we've collected more data!</h1>
 </div>
 <followers-directive new-followers-data="followersData" ng-if="followersData.followersByDate.length >= 2"></followers-directive>
 </div>

@@ -149,6 +149,12 @@ float: right;
   outline: none;
 }
 
+.no-tracking-data-message {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+}
+
 
 input {
     -webkit-border-radius: 0;

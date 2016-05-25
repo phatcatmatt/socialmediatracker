@@ -17,10 +17,9 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
      getSessionData();
 
     $scope.getLatestTweets = function(handle) {
-      console.log(handle);
-      if (!handle) {return}
+      if (!handle) {return} //needs error message
       else if (handle.indexOf(' ') !== -1){
-        return;
+        return; //needs error message
       }
             dashSvc.latestTweets(handle).then(function(response) {
             $scope.latestTweetsData = response.twitterResponse;

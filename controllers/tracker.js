@@ -56,11 +56,3 @@ module.exports = {
 
 
 }
-
-
-// console.log(data[i]);
-// s.followersByDate.push('hi')
-// s.followersByDate.push({
-//   followers: 111111,
-//   date: new Date()
-// });
