@@ -1,29 +1,38 @@
 <div class="dashimg">
 
-
-<input class="dashsearch" placeholder="@handle" autocapitalize="none" autocorrect="off" mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
+<input class="dashsearch" placeholder="username" autocapitalize="none" autocorrect="off" mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
 "$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
 
-<div class="profileheader">
-  <h2 class="username" ng-show=latestTweetsData[0] class="username">{{latestTweetsData[0].user.name}}</h1>
-  <h3 class="screenname" ng-show=latestTweetsData[0]>@{{latestTweetsData[0].user.screen_name}}</h3>
+
+<div class="profile">
+
+
+  <div class="profileheader">
+    <h2 class="username" ng-show=latestTweetsData[0] class="username">{{latestTweetsData[0].user.name}}</h1>
+    <h3 class="screenname" ng-show=latestTweetsData[0]>@{{latestTweetsData[0].user.screen_name}}</h3>
+
+  </div>
+
+
+  <div class="profiledetails">
+    <h3 ng-show=latestTweetsData[0].user.location>location: {{latestTweetsData[0].user.location}}</h3>
+    <!-- <h3 ng-show=latestTweetsData[0].user.description>{{latestTweetsData[0].user.description}}</h3> -->
+    <h3 ng-show=latestTweetsData[0]>followers: {{latestTweetsData[0].user.followers_count | number}}</h3>
+    <h3 ng-show=latestTweetsData[0]>tweets: {{latestTweetsData[0].user.statuses_count | number}}</h3>
+  </div>
 
 </div>
 
 
-<div class="profiledetails">
-<h3 ng-show=latestTweetsData[0].user.location>location: {{latestTweetsData[0].user.location}}</h3>
-<!-- <h3 ng-show=latestTweetsData[0].user.description>{{latestTweetsData[0].user.description}}</h3> -->
-<h3 ng-show=latestTweetsData[0]>followers: {{latestTweetsData[0].user.followers_count | number}}</h3>
-<h3 ng-show=latestTweetsData[0]>tweets: {{latestTweetsData[0].user.statuses_count | number}}</h3>
-</div>
-
-<button ng-show=latestTweetsData[0] class="showFollowersButton" ng-click="barChartShow()">show more</button>
+<button ng-show=latestTweetsData[0] class="showMoreButton" ng-click="barChartShow()">{{showMore}}</button>
 
 
 <div ng-show="chartTab">
 
   <stacked-bar-chart-directive new-data="twitterData" ng-if="twitterData.length"></stacked-bar-chart-directive>
+  <div class="barchartxlabel" ng-if="twitterData.length">
+    <span class="x-label-older">&#10229 older</span> <span class="x-label-tweets">tweets</span><span class="x-label-newer">newer &#10230</span>
+  </div>
 </div>
 
 

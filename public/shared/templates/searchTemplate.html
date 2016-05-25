@@ -6,9 +6,15 @@
 
 
   <div class="searchcontainer">
-    <input class="mainsearch" placeholder="@handle" autocapitalize="none" autocorrect="off" mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
-    "$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
+    <input class="mainsearch" placeholder="search by username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'search by username'" autocapitalize="none" autocorrect="off"
+     mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
+"$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
+    <div class="past-searches" ng-click="getLatestTweets(history.screenName)" ng-repeat="history in shortHistory" >
+    {{history.screenName}}
+    </div>
   </div>
+
+
   <div class="landingbottom">
 
   </div>

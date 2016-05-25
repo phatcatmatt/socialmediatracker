@@ -112,7 +112,6 @@ angular.module('socialMediaTracker')
           render(newData);
         }
 
-
         // tweettip.append('div')
         //   .attr('class', 'count');
         //

@@ -31,7 +31,8 @@ module.exports = {
                         });
                         s.save(function(err, response) {
                             if (err) {
-                                console.log(err);
+                                res.status(500).send(err)
+
                             } else {
                                 asyncFor(arr, i + 1);
                             }

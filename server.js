@@ -33,7 +33,7 @@ app.use(session({
 }));
 
 
-
+app.get('/api/session/', sessionHistory.restore)
 
 var T = new Twit(keys.twit);
 

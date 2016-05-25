@@ -1,5 +1,14 @@
 angular.module('socialMediaTracker').service('dashSvc', function($http) {
 
+  this.restoreSession = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/session/'
+    }).then(function(restoreResponse){
+      return restoreResponse.data;
+    })
+  }
+
     this.latestTweets = function(search) {
 
         return $http({
