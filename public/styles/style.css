@@ -63,15 +63,15 @@ body {
   outline: none;
 }
 
-.past-searches{
+.past-searches {
   font-size: 14px;
   color: white;
   display: flex;
   justify-content: center;
   padding: 1px;
-
-
+  cursor: default;
 }
+
 
 .dashimg{
   /*background-color: rgb(240, 240, 240);*/
