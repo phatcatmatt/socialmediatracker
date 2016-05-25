@@ -1,21 +1,60 @@
-
 <div class="landingdiv">
-  <div class="logobox">
-    <h1 class="logotext">twuft.ly</h1>
-  </div>
-
-
-  <div class="searchcontainer">
-    <input class="mainsearch" placeholder="search by username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'search by username'" autocapitalize="none" autocorrect="off"
-     mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup=
-"$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
-    <div class="past-searches" ng-click="getLatestTweets(history.screenName)" ng-repeat="history in shortHistory" >
-    {{history.screenName}}
+    <div class="logobox">
+        <h1 class="logotext">twuft.ly</h1>
     </div>
-  </div>
 
 
-  <div class="landingbottom">
+    <div class="searchcontainer">
+        <input class="mainsearch" placeholder="search by username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'search by username'" autocapitalize="none" autocorrect="off" mozactionhint="search" maxlength="15" ng-model="searchTerm" ng-keyup="$event.keyCode == 13 && getLatestTweets(searchTerm)"></input>
+        <p class="past-searches" ng-click="getLatestTweets(history.screenName)" ng-repeat="history in shortHistory">
+            {{history.screenName}}
+        </p>
+    </div>
 
-  </div>
+
+    <div class="landingbottom">
+
+        <p ng-click=showModal() class="modal-button">
+            how it works
+        </p>
+
+        <div ng-show=modal ng-click=showModal() class="landing-modal">
+
+            <p class="modal-text" id="welcome-modal-text">
+                welcome to <strong>twuft.ly</strong>
+            </p>
+
+            <p class="modal-text" id="step-one">
+                1. search twitter for any public user, <strong>no sign-up required</strong>
+            </p>
+
+            <div class="two-steps">
+                <div id="step-two">
+
+                    <p class="modal-text">
+                        2. see how <strong>popular</strong> their tweets are with their followers. dynamic data visualization for retweets and favorites. click the <strong>data</strong> to see each tweet and details.
+                    </p>
+                </div>
+
+                <div id="step-three">
+
+                    <p class="modal-text">
+                        3. twitter doesn't <strong>track followers</strong> over time, but twuft.ly does. the first time a user is searched it goes in our database where we stalkerishly watch its followers count.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="modal-text" id="free-modal-text">
+                oh and its <strong>free</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+
 </div>

@@ -6,7 +6,8 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
      $scope.chartTab = true;
      $scope.searchHistory = [];
      $scope.shortHistory = [];
-     $scope.showMore = 'show followers'
+     $scope.showMore = 'show followers';
+     $scope.modal = false;
 
      var getSessionData = function(){
        dashSvc.restoreSession().then(function(sessionData){
@@ -70,6 +71,10 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
       } else {
         $scope.showMore = 'show followers'
       }
+    }
+
+    $scope.showModal = function() {
+      $scope.modal = !$scope.modal;
     }
 
 

@@ -13,7 +13,7 @@ body {
   z-index: -1pt;
 }
 .landingdiv {
-  height: 90vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -65,6 +65,7 @@ body {
 
 .past-searches {
   font-size: 14px;
+  font-weight: 300;
   color: white;
   display: flex;
   justify-content: center;
@@ -72,6 +73,72 @@ body {
   cursor: default;
 }
 
+.modal-button{
+  cursor: pointer;
+  color: white;
+}
+
+.landing-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(110, 190, 221, .8);
+  font-size: 18px;
+  z-index: 200px;
+  display: flex;
+  justify-content: space-around;;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+
+.modal-text {
+opacity: 1;
+  color: white;
+  font-weight: 300;
+}
+
+
+
+
+#welcome-modal-text{
+  margin: 15px;
+  font-size: 34px;
+  text-align: center;
+}
+
+#step-one{
+margin: 15px;
+text-align: center;
+}
+
+.two-steps{
+
+  justify-content: space-around;
+  text-align: center;
+}
+
+
+#step-two{
+margin: 15px;
+padding: 20px;
+}
+
+#step-three{
+margin: 15px;
+padding: 20px;
+}
+
+
+#free-modal-text{
+  font-size: 32px;
+  margin: 15px;
+  text-align: center;
+}
 
 .dashimg{
   /*background-color: rgb(240, 240, 240);*/
@@ -103,7 +170,7 @@ float: right;
   font-size: 18px;
   padding: 10px 0;
   margin: 10px;
-  margin-right: 20px;
+  margin-right: 10px;
   padding-bottom: 13px;
   color: white;
   border-style: solid;
@@ -150,9 +217,11 @@ float: right;
 }
 
 .no-tracking-data-message {
+  padding: 10px;
   font-size: 18px;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 
@@ -282,4 +351,17 @@ padding: 10px;
   /*top: 400px;*/
   /*width: 100vw;*/
   /*z-index: 10;*/
+}
+
+
+@media (min-width: 600px) {
+  .dashsearch{
+    width: 200px;
+  }
+}
+
+@media (min-width: 750px) {
+  .two-steps{
+    display: flex;
+  }
 }
