@@ -1,5 +1,7 @@
 angular.module('socialMediaTracker').service('dashSvc', function($http) {
 
+
+//load session history on page open
   this.restoreSession = function() {
     return $http({
       method: 'GET',
@@ -9,6 +11,10 @@ angular.module('socialMediaTracker').service('dashSvc', function($http) {
     })
   }
 
+
+
+
+//search for users tweets
   this.latestTweets = function(search) {
 
       return $http({
@@ -25,14 +31,15 @@ angular.module('socialMediaTracker').service('dashSvc', function($http) {
               currentFollowers: twitterResponse.data[0].user.followers_count,
               lastChecked: new Date(),
           };
-
+          //pull users follower history from db or add it to be tracked
           return $http({
               method: 'PUT',
               url: '/api/trackFollowers/' + trackInfo.id,
               data: trackInfo
           })
-
           .then(function(trackerResponse) {
+
+            //update and get session history
               return $http({
                   method: 'PUT',
                   url: '/api/session/',
