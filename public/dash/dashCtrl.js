@@ -1,4 +1,4 @@
-angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $state, $filter, dashSvc) {
+angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $state, $filter, dashSvc, $stateParams) {
 
     $scope.latestTweetsData = null;
      $scope.twitterData = [];
@@ -53,7 +53,6 @@ angular.module('socialMediaTracker').controller('dashCtrl', function($scope, $st
         }
         $scope.twitterData.reverse();
         $scope.shortHistory = historyLimiter($scope.searchHistory);
-        console.log($scope.shortHistory);
     }
 
     function historyLimiter(history) {
