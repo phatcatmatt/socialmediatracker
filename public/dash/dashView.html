@@ -45,7 +45,7 @@
   <h1 class="no-tracking-data-message">We've recently started tracking @{{latestTweetsData[0].user.screen_name}}'s followers. Please check back in about 45 minutes, when we've collected more data!</h1>
 </div>
 <followers-directive new-followers-data="followersData" ng-if="followersData.followersByDate.length >= 2"></followers-directive>
-<div class="barchartxlabel" ng-if="twitterData.length">
+<div class="barchartxlabel" ng-if="followersData.followersByDate.length >= 2">
   <span class="x-label-older">&#10229 older</span> <span class="x-label-tweets">date</span><span class="x-label-newer">newer &#10230</span>
 </div>
 </div>
