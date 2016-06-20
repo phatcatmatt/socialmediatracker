@@ -17,7 +17,7 @@ angular.module('socialMediaTracker')
 
       var outerWidth;
       var outerHeight;
-      var margin = {top: 10, right: 30, bottom: 10, left: 45};
+      var margin = {top: 10, right: 30, bottom: 10, left: 50};
       var barPadding;
       // var outerWidth = 960;
       // var outerHeight = 550;
@@ -70,7 +70,7 @@ angular.module('socialMediaTracker')
 
         function setsize(data){
           outerWidth = window.innerWidth;
-          outerHeight = window.innerHeight/1.7;
+          outerHeight = window.innerHeight/1.5;
           if (outerWidth < 425){
             barPadding = .1;
             smallData = $filter('limitTo')(data, -12);
