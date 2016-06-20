@@ -11,7 +11,7 @@ var sessionHistory = require('./controllers/sessionHistory')
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 
 mongoose.set('debug', true)
