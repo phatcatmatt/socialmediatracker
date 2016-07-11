@@ -59,7 +59,7 @@ setInterval(function() {
         })
 
 
-}, 15 * 60 * 1000)
+}, 60 * 60 * 1000)
 
 
 app.listen(keys.port, function() {
