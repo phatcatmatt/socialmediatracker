@@ -42,7 +42,7 @@
 <div ng-show="!chartTab">
 
 <div ng-if="followersData.followersByDate.length < 2">
-  <h1 class="no-tracking-data-message">We've recently started tracking @{{latestTweetsData[0].user.screen_name}}'s followers. Please check back in about 45 minutes, when we've collected more data!</h1>
+  <h1 class="no-tracking-data-message">We've recently started tracking @{{latestTweetsData[0].user.screen_name}}'s followers. Please check back in a few hours, when we've collected more data!</h1>
 </div>
 <followers-directive new-followers-data="followersData" ng-if="followersData.followersByDate.length >= 2"></followers-directive>
 <div class="barchartxlabel" ng-if="followersData.followersByDate.length >= 2">
